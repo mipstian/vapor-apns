@@ -38,6 +38,10 @@ open class VaporAPNS {
         
         curlHelperSetOptInt(curlHandle, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2_0)
     }
+  
+    deinit {
+        curl_easy_cleanup(curlHandle)
+    }
     
     open func send(_ message: ApplePushMessage, to deviceToken: String) -> Result {
         // Set URL
