@@ -73,8 +73,10 @@ open class VaporAPNS {
         if !options.usesCertificateAuthentication {
             let token: String
             if let recentToken = lastGeneratedToken, abs(recentToken.date.timeIntervalSinceNow) < 1800 {
+              print("reusing token")
               token = recentToken.token
             } else {
+              print("generating new token")
               let privateKey = options.privateKey!.bytes.base64Decoded
               let claims: [Claim] = [
                 IssuerClaim(string: options.teamId!),
