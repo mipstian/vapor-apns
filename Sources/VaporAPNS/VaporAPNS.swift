@@ -104,7 +104,8 @@ open class VaporAPNS {
                 }
               }
               
-              lastGeneratedToken = (date: Date(), token: tokenString.replacingOccurrences(of: " ", with: ""))
+              token = tokenString.replacingOccurrences(of: " ", with: "")
+              lastGeneratedToken = (date: Date(), token: token)
             }
           
             curlHeaders = curl_slist_append(curlHeaders, "Authorization: bearer \(token)")
